@@ -9,10 +9,10 @@ class AndroidId {
   static const _methodChannel = MethodChannel('android_id');
 
   /// Calls the native method to retrieve the Android ID.
-  Future<String?> getId() async {
+  Future<String> getId() async {
     final isAndroid = defaultTargetPlatform == TargetPlatform.android;
     if (!isAndroid) return null;
 
-    return _methodChannel.invokeMethod<String?>('getId');
+    return _methodChannel.invokeMethod<String>('getId');
   }
 }
