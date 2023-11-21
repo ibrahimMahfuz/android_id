@@ -27,7 +27,7 @@ public class AndroidIdPlugin implements FlutterPlugin, MethodCallHandler {
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("getAndroidId")) {
       String androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID);
-      result.success(androidId);
+      result.success(getAndroidId());
     } else {
       result.notImplemented();
     }
@@ -40,7 +40,7 @@ public class AndroidIdPlugin implements FlutterPlugin, MethodCallHandler {
 
   // Fetch the Android ID while suppressing lint warning about hardware IDs
   @SuppressLint("HardwareIds")
-  private fun getAndroidId(): String? {
-    return Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+  private String getAndroidId() {
+    return Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
   }
 }
